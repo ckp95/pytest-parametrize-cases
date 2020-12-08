@@ -1,6 +1,6 @@
 # pytest-parametrize-cases
 
-Simple wrapper around `pytest.mark.parametrize` which makes it more user-friendly. Just paste this somewhere in your test suite (`conftest.py` is a good idea) then import `Case` and `parametrize_cases`. This is not an installable package (yet).
+The way parametrized tests work in `pytest` annoyed the hell out of me (seriously, passing in argument names as a comma separated string???), so I wrote a simple wrapper around `pytest.mark.parametrize` which makes it more user-friendly. Just paste this somewhere in your test suite (`conftest.py` is a good idea) then import `Case` and `parametrize_cases`. This is not an installable package (yet).
 
 ```python
 class Case:
