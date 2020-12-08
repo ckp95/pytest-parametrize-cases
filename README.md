@@ -8,7 +8,7 @@ class Case:
         self.label = label
         self.kwargs = kwargs
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Case({self.label!r}, **{self.kwargs!r})"
 
 
@@ -43,3 +43,30 @@ def parametrize_cases(*cases: Case):
         argnames=argument_string, argvalues=case_list, ids=ids_list
     )
 ```
+
+Using the [same example as the one in the pytest docs](https://docs.pytest.org/en/stable/example/parametrize.html#different-options-for-test-ids) for `pytest.mark.parametrize`, this is how it is used:
+
+```python
+@parametrize_cases(
+    Case(
+        "forward",
+        a=datetime(2001, 12, 12),
+        b=datetime(2001, 12, 11),
+        expected=timedelta(1),
+    ),
+    Case(
+        "backward",
+        a=datetime(2001, 12, 11),
+        b=datetime(2001, 12, 12),
+        expected=timedelta(-1),
+    ),
+)
+def test_timedistance_v4(a, b, expected):
+    diff = a - b
+    assert diff == expected
+```
+
+
+That is to say, you decorate your test function with `@parametrize_cases` and pass in multiple instances of `Case` as arguments. The arguments to the `Case` constructor are [optionally] a positional-only anonymous string which constitutes the test ID, printed when you use the `-v / --verbose` flag, and then keyword arguments for each of the parameters the test function expects.
+
+This is much more readable and user-friendly than the default way of writing parametrized tests. Related data is kept together rather than spread out in multiple containers. Specifying the keyword arguments is mandatory, so it is always clear where each piece of data ends up in the test function (explicit is better than implicit). And it is more convenient to specify test IDs.
