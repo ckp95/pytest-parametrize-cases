@@ -67,6 +67,6 @@ def test_timedistance_v4(a, b, expected):
 ```
 
 
-That is to say, you decorate your test function with `@parametrize_cases` and pass in multiple instances of `Case` as arguments. The arguments to the `Case` constructor are [optionally] a positional-only anonymous string which constitutes the test ID, printed when you use the `-v / --verbose` flag, and then keyword arguments for each of the parameters the test function expects.
+That is to say, you decorate your test function with `@parametrize_cases` and pass in multiple instances of `Case` as arguments. The arguments to the `Case` constructor are [optionally] a positional-only string which constitutes the test ID (printed when you use the `-v / --verbose` flag), and then keyword arguments for each of the parameters the test function expects.
 
 This is much more readable and user-friendly than the default way of writing parametrized tests. Related data is kept together rather than spread out in multiple containers. Specifying the keyword arguments is mandatory, so it is always clear where each piece of data ends up in the test function (explicit is better than implicit). And it is more convenient to specify test IDs.
