@@ -8,6 +8,11 @@ def test_case_eq():
     case_2 = Case(bar=10, baz=...)
     case_3 = Case("foo", bar=11, baz=...)
 
+    assert case_1 == case_1
+    assert case_1 != case_2
+    assert case_2 != case_3
+    assert case_1 != case_3
+
 
 def test_case_repr():
     case = Case("foo", bar=10, baz=...)
@@ -77,11 +82,7 @@ def test_arg_reorder():
     wrapped = parametrize_cases(
         Case(foo=3, bar="something", baz=777),
         Case(bar=-100, baz="aaaaa", foo=None),
-        Case(
-            baz=0,
-            bar=...,
-            foo=[10, 20, 30],
-        ),
+        Case(baz=0, bar=..., foo=[10, 20, 30]),
     )
 
     assert wrapped == standard
@@ -92,5 +93,6 @@ def test_inconsistent_parameters():
         parametrize_cases(Case(foo=10, bar=20), Case(foo=10, baz=30))
 
     assert e.match(
-        r"Inconsistent parametrization: Case\(foo=10, bar=20,\), Case\(foo=10, baz=30,\)"
+        r"Inconsistent parametrization: "
+        r"Case\(foo=10, bar=20,\), Case\(foo=10, baz=30,\)"
     )
