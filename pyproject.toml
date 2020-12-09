@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "pytest-parametrize-cases"
+version = "0.1.0"
+description = "A more user-friendly way to write parametrized tests."
+authors = ["Cameron Pinnegar <cameron.pinnegar@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytest = "^6.1.2"
+
+[tool.poetry.dev-dependencies]
+black = "^20.8b1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
