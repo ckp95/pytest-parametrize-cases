@@ -1,6 +1,6 @@
 # pytest-parametrize-cases
 
-[![Tests](https://github.com/ckp95/pytest-parametrize-cases/workflows/Tests/badge.svg)](https://github.com/ckp95/pytest-parametrize-cases/actions?workflow=Tests)
+[![Tests](https://github.com/ckp95/pytest-parametrize-cases/workflows/Tests/badge.svg)](https://github.com/ckp95/pytest-parametrize-cases/actions?workflow=Tests)[![PyPI](https://img.shields.io/pypi/v/pytest-parametrize-cases.svg)](https://pypi.org/project/pytest-parametrize-cases/)
 
 ## What is it?
 
