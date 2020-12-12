@@ -1,5 +1,7 @@
 # pytest-parametrize-cases
 
+[![Tests](https://github.com/ckp95/pytest-parametrize-cases/workflows/Tests/badge.svg)](https://github.com/ckp95/pytest-parametrize-cases/actions?workflow=Tests)
+
 ## What is it?
 
 The way [parametrized tests](https://docs.pytest.org/en/stable/parametrize.html) work in `pytest` annoys me:
