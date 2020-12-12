@@ -3,7 +3,7 @@ from pathlib import Path
 
 import nox
 
-locations = ["src", "tests", "noxfile.py"]
+locations = ["src", "tests"]
 
 
 @nox.session(python=["3.8", "3.9"])
@@ -19,11 +19,11 @@ def mypy(session):
     session.run("mypy", "--strict", *args)
 
 
-@nox.session(python=["3.8", "3.9"])
+@nox.session(python=["3.9"])
 def py_typed(session):
     # have to pip install to make sure not in editable mode, see
     # https://github.com/python-poetry/poetry/issues/1382
-    session.run("pip", "install", "-q", ".", "mypy")
+    session.install(".", "mypy")
 
     # if we haven't included py.typed in the package, mypy --strict should
     # complain about missing imports. if we have included it, mypy is happy.
@@ -39,8 +39,14 @@ def py_typed(session):
         session.run("mypy", "--strict", str(filepath))
 
 
-@nox.session(python=["3.8", "3.9"])
+@nox.session(python=["3.9"])
 def lint(session):
     args = session.posargs or locations
-    session.install("flake8", "flake8-black", "flake8-import-order", "flake8-bugbear")
+    session.install(
+        "flake8",
+        "flake8-black",
+        "flake8-import-order",
+        "flake8-bugbear",
+        "flake8-docstrings",
+    )
     session.run("flake8", *args)
