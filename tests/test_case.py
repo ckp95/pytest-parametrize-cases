@@ -12,6 +12,7 @@ def test_case_eq():
     assert case_1 != case_2
     assert case_2 != case_3
     assert case_1 != case_3
+    assert case_1 != 10
 
 
 def test_case_repr():

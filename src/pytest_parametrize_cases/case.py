@@ -1,22 +1,31 @@
+from __future__ import annotations
+
+from typing import Any, Optional
+
+from _pytest.mark.structures import MarkDecorator
+
 import pytest
 
 
 class Case:
-    def __init__(self, label=None, /, **kwargs):
+    def __init__(self, label: Optional[str] = None, /, **kwargs: Any):
         self.label = label
         self.kwargs = kwargs
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Case):
+            return False
+
         return (self.label == other.label) and (self.kwargs == other.kwargs)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         pairs = [f"{key}={value!r}," for key, value in self.kwargs.items()]
         joined = " ".join(pairs)
         label = f"'{self.label}', " if self.label is not None else ""
         return f"Case({label}{joined})"
 
 
-def parametrize_cases(*cases):
+def parametrize_cases(*cases: Case) -> MarkDecorator:
     first_case = cases[0]
     first_args = first_case.kwargs.keys()
 

@@ -10,6 +10,13 @@ def tests(session):
 
 
 @nox.session(python=["3.8", "3.9"])
+def mypy(session):
+    args = session.posargs or ["src"]
+    session.run("poetry", "install", external=True)
+    session.run("mypy", "--strict", *args)
+
+
+@nox.session(python=["3.8", "3.9"])
 def lint(session):
     args = session.posargs or locations
     session.install("flake8", "flake8-black", "flake8-import-order", "flake8-bugbear")
