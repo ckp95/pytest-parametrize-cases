@@ -6,20 +6,20 @@ import nox
 locations = ["src", "tests"]
 
 
-@nox.session(python=["3.8", "3.9"])
+@nox.session(python=["3.8", "3.9", "3.10"])
 def tests(session):
     session.run("poetry", "install", external=True)
     session.run("pytest", "--cov")
 
 
-@nox.session(python=["3.8", "3.9"])
+@nox.session(python=["3.8", "3.9", "3.10"])
 def mypy(session):
     args = session.posargs or ["src"]
     session.run("poetry", "install", external=True)
     session.run("mypy", "--strict", *args)
 
 
-@nox.session(python=["3.9"])
+@nox.session(python=["3.10"])
 def py_typed(session):
     # have to pip install to make sure not in editable mode, see
     # https://github.com/python-poetry/poetry/issues/1382
@@ -39,7 +39,7 @@ def py_typed(session):
         session.run("mypy", "--strict", str(filepath))
 
 
-@nox.session(python=["3.9"])
+@nox.session(python=["3.10"])
 def lint(session):
     args = session.posargs or locations
     session.install(
