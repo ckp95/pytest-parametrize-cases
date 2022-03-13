@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pytest-parametrize-cases"
-version = "0.1.1"
+version = "0.1.2"
 description = "A more user-friendly way to write parametrized tests."
 authors = ["Cameron Pinnegar <cameron.pinnegar@gmail.com>"]
 # include = ["src/pytest_parametrize_cases/py.typed"]
